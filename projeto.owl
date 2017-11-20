@@ -12,6 +12,9 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Ontology: <http://www.semanticweb.org/victor/ontologies/2017/10/projeto>
 
 
+AnnotationProperty: rdfs:label
+
+    
 Datatype: rdf:PlainLiteral
 
     
@@ -47,6 +50,9 @@ Class: <foaf:Person>
     
 Individual: <foaf:BillMurray>
 
+    Annotations: 
+        rdfs:label "Bill Murray"
+    
     Types: 
         <foaf:Actor>
     
@@ -57,6 +63,9 @@ Individual: <foaf:BillMurray>
     
 Individual: <foaf:FrancesMcDormand>
 
+    Annotations: 
+        rdfs:label "Frances McDormand"
+    
     Types: 
         <foaf:Actor>
     
@@ -67,6 +76,9 @@ Individual: <foaf:FrancesMcDormand>
     
 Individual: <foaf:HarveyKeitel>
 
+    Annotations: 
+        rdfs:label "Harvey Keitel"
+    
     Types: 
         <foaf:Actor>
     
@@ -77,6 +89,9 @@ Individual: <foaf:HarveyKeitel>
     
 Individual: <foaf:QuentinTarantino>
 
+    Annotations: 
+        rdfs:label "Quentin Tarantino"
+    
     Types: 
         <foaf:Director>
     
@@ -87,6 +102,9 @@ Individual: <foaf:QuentinTarantino>
     
 Individual: <foaf:UmaThurman>
 
+    Annotations: 
+        rdfs:label "Uma Thurman"
+    
     Types: 
         <foaf:Actor>
     
@@ -97,6 +115,9 @@ Individual: <foaf:UmaThurman>
     
 Individual: <foaf:WesAnderson>
 
+    Annotations: 
+        rdfs:label "Wes Anderson"
+    
     Types: 
         <foaf:Director>
     
