@@ -1,0 +1,107 @@
+Prefix: : <http://www.semanticweb.org/victor/ontologies/2017/10/projeto:>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: foaf: <https://www.ime.usp.br/~renata/FOAF-modified.rdf#>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://www.semanticweb.org/victor/ontologies/2017/10/projeto>
+
+
+Datatype: rdf:PlainLiteral
+
+    
+ObjectProperty: <foaf:made>
+
+    
+ObjectProperty: <foaf:maker>
+
+    
+DataProperty: <foaf:familyName>
+
+    
+DataProperty: <foaf:firstName>
+
+    
+Class: <foaf:Actor>
+
+    SubClassOf: 
+        <foaf:Person>
+    
+    
+Class: <foaf:Director>
+
+    SubClassOf: 
+        <foaf:Person>
+    
+    
+Class: <foaf:Movie>
+
+    
+Class: <foaf:Person>
+
+    
+Individual: <foaf:BillMurray>
+
+    Types: 
+        <foaf:Actor>
+    
+    Facts:  
+     <foaf:familyName>  "Murray",
+     <foaf:firstName>  "Bill"
+    
+    
+Individual: <foaf:FrancesMcDormand>
+
+    Types: 
+        <foaf:Actor>
+    
+    Facts:  
+     <foaf:familyName>  "McDormand",
+     <foaf:firstName>  "Frances"
+    
+    
+Individual: <foaf:HarveyKeitel>
+
+    Types: 
+        <foaf:Actor>
+    
+    Facts:  
+     <foaf:familyName>  "Keitel",
+     <foaf:firstName>  "Harvey"
+    
+    
+Individual: <foaf:QuentinTarantino>
+
+    Types: 
+        <foaf:Director>
+    
+    Facts:  
+     <foaf:familyName>  "Tarantino",
+     <foaf:firstName>  "Quentin"
+    
+    
+Individual: <foaf:UmaThurman>
+
+    Types: 
+        <foaf:Actor>
+    
+    Facts:  
+     <foaf:familyName>  "Thurman",
+     <foaf:firstName>  "Uma"
+    
+    
+Individual: <foaf:WesAnderson>
+
+    Types: 
+        <foaf:Director>
+    
+    Facts:  
+     <foaf:familyName>  "Anderson",
+     <foaf:firstName>  "Wes"
+    
+    
