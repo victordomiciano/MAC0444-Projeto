@@ -28,6 +28,9 @@ Datatype: xsd:integer
 Datatype: xsd:positiveInteger
 
 
+Datatype: xsd:string
+
+
 ObjectProperty: foaf-modified:made
 
     Range:
@@ -75,6 +78,19 @@ DataProperty: foaf-modified:firstName
 DataProperty: foaf-modified:gender
 
 
+DataProperty: projeto:movieTitle
+
+    Annotations:
+        rdfs:label "movieTitle",
+        rdfs:comment "This movie's title."
+
+    Domain:
+        projeto:Movie
+
+    Range:
+        xsd:string
+
+
 DataProperty: projeto:releaseYear
 
     Annotations:
@@ -118,6 +134,7 @@ Individual: projeto:pulpFiction
         projeto:Movie
 
     Facts:
+     projeto:movieTitle  "Pulp Fiction",
      projeto:releaseYear  1994
 
 
@@ -129,8 +146,7 @@ Individual: projeto:quentinTarantino
     Facts:
      projeto:directs  projeto:pulpFiction,
      foaf-modified:familyName  "Tarantino",
-     foaf-modified:firstName  "Quentin",
-     foaf-modified:gender  "male"
+     foaf-modified:firstName  "Quentin"
 
     DifferentFrom:
         projeto:umaThurman
@@ -144,8 +160,7 @@ Individual: projeto:umaThurman
     Facts:
      projeto:actsIn  projeto:pulpFiction,
      foaf-modified:familyName  "Thurman",
-     foaf-modified:firstName  "Uma",
-     foaf-modified:gender  "female"
+     foaf-modified:firstName  "Uma"
 
     DifferentFrom:
         projeto:quentinTarantino
