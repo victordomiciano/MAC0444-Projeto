@@ -3796,7 +3796,7 @@ Individual: projeto:murrayK
 Individual: projeto:carloLizzani
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -8099,7 +8099,7 @@ Individual: projeto:joshuaFarcone
 Individual: projeto:richardLinklater
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -10367,7 +10367,7 @@ Individual: projeto:joeIvy
 Individual: projeto:robertRodriguez
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -12338,7 +12338,7 @@ Individual: projeto:harmonyCramp
 Individual: projeto:sigShore
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -15569,7 +15569,7 @@ Individual: projeto:templeNash
 Individual: projeto:bruceBeresford
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -16561,7 +16561,7 @@ Individual: projeto:tippiMaravala
 Individual: projeto:andyGarcia
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -16761,7 +16761,7 @@ Individual: projeto:johnDerevlany
 Individual: projeto:wesAnderson
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -17268,7 +17268,7 @@ Individual: projeto:tanishqHinduja
 Individual: projeto:alanRudolph
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -21769,7 +21769,7 @@ Individual: projeto:adanicoleSanger
 Individual: projeto:frankMiller
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -23531,7 +23531,7 @@ Individual: projeto:mahitoTsujimura
 Individual: projeto:iraMiller
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -24897,7 +24897,7 @@ Individual: projeto:cindyGirling
 Individual: projeto:tomSchiller
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -26307,7 +26307,7 @@ Individual: projeto:annaWieder
 Individual: projeto:billCouturie
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -29466,7 +29466,7 @@ Individual: projeto:donnaWiggin
 Individual: projeto:jeffBurr
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -32251,7 +32251,7 @@ Individual: projeto:amalClooney
 Individual: projeto:jamesToback
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -37247,7 +37247,7 @@ Individual: projeto:lizaOxnard
 Individual: projeto:rosannaArquette
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -37293,7 +37293,7 @@ Individual: projeto:lexiNoel
 Individual: projeto:jimJarmusch
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -37988,7 +37988,7 @@ Individual: projeto:valeriePerrine
 Individual: projeto:barrySonnenfeld
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -38969,7 +38969,7 @@ Individual: projeto:marilynRomero
 Individual: projeto:jonFavreau
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -42504,7 +42504,7 @@ Individual: projeto:goroDaimon
 Individual: projeto:barryLevinson
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -42594,7 +42594,7 @@ Individual: projeto:timWheater
 Individual: projeto:istvanSzabo
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -44026,7 +44026,7 @@ Individual: projeto:chrisSpinelli
 Individual: projeto:fernandoColomo
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -45227,7 +45227,7 @@ Individual: projeto:shannonFinnegan
 Individual: projeto:terryGilliam
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -48287,7 +48287,7 @@ Individual: projeto:rickOverton
 Individual: projeto:chrisColumbus
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -48993,7 +48993,7 @@ Individual: projeto:benHomewood
 Individual: projeto:mikeKaplan
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -58136,7 +58136,7 @@ Individual: projeto:eugeneJohnson
 Individual: projeto:morganSpurlock
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -59040,7 +59040,7 @@ Individual: projeto:davidCastro
 Individual: projeto:eliRoth
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -60923,7 +60923,7 @@ Individual: projeto:lavellCrawford
 Individual: projeto:timRobbins
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -63125,7 +63125,7 @@ Individual: projeto:oliviaBirkelund
 Individual: projeto:pollyDraper
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -64106,7 +64106,7 @@ Individual: projeto:keithAnthony
 Individual: projeto:georgeRomero
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -64702,7 +64702,7 @@ Individual: projeto:rodDana
 Individual: projeto:paulSchrader
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -65771,7 +65771,7 @@ Individual: projeto:israelBocanegra
 Individual: projeto:johnTurturro
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -68853,7 +68853,7 @@ Individual: projeto:martinMcdougall
 Individual: projeto:ethanHawke
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -70263,7 +70263,7 @@ Individual: projeto:alexBoden
 Individual: projeto:juliaSweeney
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -71464,7 +71464,7 @@ Individual: projeto:chrisMcelprang
 Individual: projeto:billMurray
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -72494,7 +72494,7 @@ Individual: projeto:lindaGaray
 Individual: projeto:debbieMelnyk
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -72749,7 +72749,7 @@ Individual: projeto:aliceDrummond
 Individual: projeto:garthJennings
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -79780,7 +79780,7 @@ Individual: projeto:alenToric
 Individual: projeto:peterBogdanovich
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -80541,7 +80541,7 @@ Individual: projeto:louConsolo
 Individual: projeto:woodyAllen
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -85504,7 +85504,7 @@ Individual: projeto:vincentConti
 Individual: projeto:rokkiJames
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -87321,7 +87321,7 @@ Individual: projeto:karenDuffy
 Individual: projeto:samRaimi
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -89424,7 +89424,7 @@ Individual: projeto:mirandaRichardson
 Individual: projeto:rickCaine
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -92264,7 +92264,7 @@ Individual: projeto:mingZhao
 Individual: projeto:janeCampion
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -93003,7 +93003,7 @@ Individual: projeto:jayForney
 Individual: projeto:tomMcgrath
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -93379,7 +93379,7 @@ Individual: projeto:nickOrmerod
 Individual: projeto:ivanReitman
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -94426,7 +94426,7 @@ Individual: projeto:poojaNarang
 Individual: projeto:larsTrier
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -97200,7 +97200,7 @@ Individual: projeto:jerrySnider
 Individual: projeto:timNelson
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -97224,7 +97224,7 @@ Individual: projeto:michaelCook
 Individual: projeto:ericDarnell
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -103914,7 +103914,7 @@ Individual: projeto:maxwellHearn
 Individual: projeto:allisonAnders
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -107150,7 +107150,7 @@ Individual: projeto:sandiShelby
 Individual: projeto:robertAltman
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -112102,7 +112102,7 @@ Individual: projeto:jasonMewes
 Individual: projeto:spikeLee
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -113809,7 +113809,7 @@ Individual: projeto:janTriska
 Individual: projeto:markHedengren
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -115505,7 +115505,7 @@ Individual: projeto:rajBose
 Individual: projeto:peterSohn
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -115947,7 +115947,7 @@ Individual: projeto:danielRamis
 Individual: projeto:haroldRamis
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -117093,7 +117093,7 @@ Individual: projeto:neilCasey
 Individual: projeto:michaelOdonoghue
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -117139,7 +117139,7 @@ Individual: projeto:shigekazuAida
 Individual: projeto:nadineLabaki
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -119561,7 +119561,7 @@ Individual: projeto:acGreen
 Individual: projeto:darioArgento
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -120509,7 +120509,7 @@ Individual: projeto:elizabethMarvel
 Individual: projeto:johnBadham
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -122194,7 +122194,7 @@ Individual: projeto:nancyParker
 Individual: projeto:romanCoppola
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -122636,7 +122636,7 @@ Individual: projeto:luisRamos
 Individual: projeto:ridleyScott
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -123419,7 +123419,7 @@ Individual: projeto:annWedgeworth
 Individual: projeto:brettRatner
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -129190,7 +129190,7 @@ Individual: projeto:gregoryCamillucci
 Individual: projeto:mitchGlazer
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -130248,7 +130248,7 @@ Individual: projeto:patMahoney
 Individual: projeto:robZombie
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -130283,7 +130283,7 @@ Individual: projeto:davidUrsin
 Individual: projeto:jackNicholson
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -130659,7 +130659,7 @@ Individual: projeto:tedNeeley
 Individual: projeto:georgeClooney
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -131090,7 +131090,7 @@ Individual: projeto:reneRusso
 Individual: projeto:johnBoorman
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -131466,7 +131466,7 @@ Individual: projeto:giustinaMorganti
 Individual: projeto:sarahKelly
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -136693,7 +136693,7 @@ Individual: projeto:kimDelgado
 Individual: projeto:rustyCundieff
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -137795,7 +137795,7 @@ Individual: projeto:shaneThompson
 Individual: projeto:artLinson
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -140866,7 +140866,7 @@ Individual: projeto:barbouraMorris
 Individual: projeto:quentinTarantino
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -141953,7 +141953,7 @@ Individual: projeto:wynCostello
 Individual: projeto:edgarWright
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -143902,7 +143902,7 @@ Individual: projeto:robertCastle
 Individual: projeto:martinScorsese
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -148579,7 +148579,7 @@ Individual: projeto:nicholasRich
 Individual: projeto:sadieKatz
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -153113,7 +153113,7 @@ Individual: projeto:lindaCarola
 Individual: projeto:toddMccarthy
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -153467,7 +153467,7 @@ Individual: projeto:charliePeters
 Individual: projeto:johnSayles
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -153502,7 +153502,7 @@ Individual: projeto:michaelJoseph
 Individual: projeto:conradVernon
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -154329,7 +154329,7 @@ Individual: projeto:victorCanache
 Individual: projeto:ethanCoen
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -154386,7 +154386,7 @@ Individual: projeto:danBurkarth
 Individual: projeto:joelCoen
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -155268,7 +155268,7 @@ Individual: projeto:michaelDavis
 Individual: projeto:ernieFosselius
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -156106,7 +156106,7 @@ Individual: projeto:ricardoHache
 Individual: projeto:hyungraeShim
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -159639,7 +159639,7 @@ Individual: projeto:jeffreyKaufman
 Individual: projeto:michaelCatonjones
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -162204,7 +162204,7 @@ Individual: projeto:antonioMonda
 Individual: projeto:bobOdenkirk
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -163988,7 +163988,7 @@ Individual: projeto:jeffJoseph
 Individual: projeto:bertrandTavernier
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -164518,7 +164518,7 @@ Individual: projeto:mikeBoss
 Individual: projeto:johnHughes
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -165774,7 +165774,7 @@ Individual: projeto:mattGriesser
 Individual: projeto:theodorosAngelopoulos
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -167888,7 +167888,7 @@ Individual: projeto:danGriffin
 Individual: projeto:sydneyPollack
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -168110,7 +168110,7 @@ Individual: projeto:johnLurie
 Individual: projeto:paulMazursky
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -169036,7 +169036,7 @@ Individual: projeto:bruceDawson
 Individual: projeto:lloydKaufman
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -169434,7 +169434,7 @@ Individual: projeto:henryBaker
 Individual: projeto:elizabethBanks
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
@@ -169744,7 +169744,7 @@ Individual: projeto:agniVlahou
 Individual: projeto:johnWells
 
     Types:
-        projeto:Director
+        projeto:Director,
         projeto:Actor
 
     Facts:
