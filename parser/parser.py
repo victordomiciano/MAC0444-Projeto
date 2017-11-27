@@ -254,7 +254,7 @@ def print_agents(f, ca, st):
       else:
         f.write("     projeto:actsIn  projeto:%s,\n" % mov)
     f.write("     foaf-modified:familyName  \"%s\",\n" % family)
-    f.write("     foaf-modified:firstName  \"%s\"\n" % first)
+    f.write("     foaf-modified:firstName  \"%s\",\n" % first)
     f.write("     foaf-modified:gender  \"%s\"\n\n" % get_gender(first, family))
     # f.write("    DifferentFrom:\n")
     # print_diff_inst(cff, inst_agts, f)
