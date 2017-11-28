@@ -1,0 +1,106 @@
+\documentclass{article}
+
+% biber
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{thmtools,thm-restate}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[justification=centering,singlelinecheck=false]{caption}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{linegoal}
+\usepackage{csquotes}
+\usetikzlibrary{snakes,arrows,shapes}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\Val}{\text{Val}}
+\DeclareMathOperator*{\Ch}{\text{Ch}}
+\DeclareMathOperator*{\Pa}{\text{Pa}}
+\DeclareMathOperator*{\Sc}{\text{Sc}}
+\newcommand{\ov}{\overline}
+\newcommand{\region}{\mathcal}
+
+\newcommand\defeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+
+\captionsetup[table]{labelsep=space}
+
+\setlistdepth{9}
+\newlist{deepitemize}{itemize}{9}
+\setlist[deepitemize,1]{label=$\bullet$}
+\setlist[deepitemize,2]{label=$\bullet$}
+\setlist[deepitemize,3]{label=$\bullet$}
+\setlist[deepitemize,4]{label=$\bullet$}
+\setlist[deepitemize,5]{label=$\bullet$}
+\setlist[deepitemize,6]{label=$\bullet$}
+\setlist[deepitemize,7]{label=$\bullet$}
+\setlist[deepitemize,8]{label=$\bullet$}
+\setlist[deepitemize,9]{label=$\bullet$}
+
+\newcommand{\set}[1]{\mathbf{#1}}
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\implies}{\Rightarrow}
+
+\newcommand{\bigo}{\mathcal{O}}
+
+\setlength{\parskip}{1em}
+
+\lstset{frameround=fttt,
+	numbers=left,
+	breaklines=true,
+	keywordstyle=\bfseries,
+	basicstyle=\ttfamily,
+}
+
+\newcommand{\code}[1]{\lstinline[mathescape=true]{#1}}
+\newcommand{\mcode}[1]{\lstinline[mathescape]!#1!}
+\newcommand{\dset}[1]{\mathcal{#1}}
+
+\title{\Huge Projeto\\~\\\LARGE Sistemas Baseados em Conhecimento (MAC0444)}
+\date{}
+\author{\Large{Renato Lui Geh}\\\large{NUSP\@: 8536030}\\}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section{Suposições}
+
+Neste projeto tivemos de assumir certas suposições com relação ao \textit{dataset}.
+
+Para construir o OWL, usamos o arcabouço \code{imdbpy}. Ao analisar os dados do dataset do IMDb,
+notamos que haviam vários títulos que tinham uma definição diferente de filme. Séries e miniséries
+de TV são consideradas pelo IMDb como filmes. Similarmente \textit{shows} de televisão, como a
+apresentação dos prêmios Oscar e Emmy também entram na mesma categoria de filmes. Apesar do IMDb
+considerar diferentes tipos de filmes, como \code{tv movie} e \code{movie}, essa diferenciação
+ainda não é uma boa classificação, já que haviam exceções a regra.
+
+Para definirmos de forma mais rigorosa o que é um filme, tivemos que supor alguns conceitos sobre
+filmes. Em particular, consideramos um filme um título do IMDb que segue as seguintes regras:
+
+\begin{enumerate}
+  \item Não tem ``episódios'';
+  \item Tem um conjunto de ``diretores'';
+  \item Tem ano de lançamento;
+  \item Tem um conjunto de ``atores'';
+  \item É do tipo \code{movie}.
+\end{enumerate}
+
+Com estas fortes retrições, foi possível selecionar um conjunto consistente de filmes.
+
+%--------------------------------------------------------------------------------------------------
+\end{document}
