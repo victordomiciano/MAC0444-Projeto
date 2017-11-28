@@ -33,12 +33,19 @@ movs = {}
 
 # Agent (i.e. actor or director) movie references. Each entry is [role, movieID].
 agt_refs = {}
+# Movie cast (actors and directors).
+mov_cast = {}
 
 def valid_movie(m):
   if (not m.get('episodes')) and m.get('director') and m.get('year') and m.get('cast') and \
       (m.get('kind') == 'movie'):
       return True
   return False
+
+def append_key(d, k, e):
+  if not k in d:
+    d[k] = []
+  d[k].append(e)
 
 # Select only movies. Discard TV series.
 def validate_movs(ai, r, m):
@@ -47,9 +54,8 @@ def validate_movs(ai, r, m):
   if valid_movie(m) and (not i in movs):
     movs[i] = m
     q_movs.append(m)
-    if not ai in agt_refs:
-      agt_refs[ai] = []
-    agt_refs[ai].append([r, i])
+    append_key(agt_refs, ai, [r, i])
+    append_key(mov_cast, i, ai)
 
 # Adds person e's movies from l to dict d.
 def add_to(l, d, e, r, m=None):
@@ -60,9 +66,8 @@ def add_to(l, d, e, r, m=None):
       for t in l:
         validate_movs(i, r, t)
     else:
-      if not i in agt_refs:
-        agt_refs[i] = []
-      agt_refs[i].append([r, m])
+      append_key(agt_refs, i, [r, m])
+      append_key(mov_cast, m, i)
 
 # Retrieve initial list of movies from initial list of people.
 def retrieve_initial():
@@ -153,23 +158,6 @@ def print_diff_inst(t, d, f):
     if k != t:
       f.write("        projeto:%s\n" % k)
 
-# Prints every movie's OWL representation.
-def print_movies(f, cm, st):
-  for _, m in movs.iteritems():
-    t = alphanumify(m['title'])
-    y = m['year']
-    ct = camelify(t)
-    f.write("Individual: projeto:%s\n\n" % ct)
-    f.write("    Types:\n        projeto:Movie\n\n")
-    f.write("    Facts:\n     projeto:movieTitle  \"%s\",\n" % t)
-    f.write("     projeto:releaseYear  %d\n\n" % y)
-    # f.write("    DifferentFrom:\n")
-    # print_diff_inst(ct, inst_movs, f)
-    # f.write("\n")
-    cm -= 1
-    if cm % st == 0:
-      print("  Scanning movies... [%d/%d]" % (len(movs)-cm, len(movs)))
-
 agents = {}
 
 # Merges acts and dirs into a single dict agents.
@@ -183,6 +171,31 @@ def merge_ids():
 
 print("Merging IDs from agents (actors and directors)...")
 merge_ids()
+
+def print_cast(f, m):
+  l = mov_cast[m.movieID]
+  for p in l:
+    _, _, ff = namefy(agents[p]['name'])
+    name = camelify(ff)
+    f.write("     foaf-modified:maker projeto:%s,\n" % name)
+
+# Prints every movie's OWL representation.
+def print_movies(f, cm, st):
+  for _, m in movs.iteritems():
+    t = alphanumify(m['title'])
+    y = m['year']
+    ct = camelify(t)
+    f.write("Individual: projeto:%s\n\n" % ct)
+    f.write("    Types:\n        projeto:Movie\n\n")
+    f.write("    Facts:\n     projeto:movieTitle  \"%s\",\n" % t)
+    print_cast(f, m)
+    f.write("     projeto:releaseYear  %d\n\n" % y)
+    # f.write("    DifferentFrom:\n")
+    # print_diff_inst(ct, inst_movs, f)
+    # f.write("\n")
+    cm -= 1
+    if cm % st == 0:
+      print("  Scanning movies... [%d/%d]" % (len(movs)-cm, len(movs)))
 
 # ---- SQL ----
 
@@ -242,7 +255,11 @@ def print_agents(f, ca, st):
     f.write("Individual: projeto:%s\n\n" % cff)
     f.write("    Types:\n")
     if is_d:
-      f.write("        projeto:Director\n")
+      f.write("        projeto:Director")
+      if is_a:
+        f.write(",\n")
+      else:
+        f.write("\n")
     if is_a:
       f.write("        projeto:Actor\n")
     f.write("\n    Facts:\n")
