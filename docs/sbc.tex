@@ -80,14 +80,16 @@
 
 \section{Suposições}
 
-Neste projeto tivemos de assumir certas suposições com relação ao \textit{dataset}.
+Neste projeto tivemos de assumir certas suposições com relação ao \textit{dataset}. Para construir
+o OWL, usamos o arcabouço \code{imdbpy}.
 
-Para construir o OWL, usamos o arcabouço \code{imdbpy}. Ao analisar os dados do dataset do IMDb,
-notamos que haviam vários títulos que tinham uma definição diferente de filme. Séries e miniséries
-de TV são consideradas pelo IMDb como filmes. Similarmente \textit{shows} de televisão, como a
-apresentação dos prêmios Oscar e Emmy também entram na mesma categoria de filmes. Apesar do IMDb
-considerar diferentes tipos de filmes, como \code{tv movie} e \code{movie}, essa diferenciação
-ainda não é uma boa classificação, já que haviam exceções a regra.
+\subsection{Filmes}
+
+Ao analisar os dados do dataset do IMDb, notamos que haviam vários títulos que tinham uma definição
+diferente de filme. Séries e miniséries de TV são consideradas pelo IMDb como filmes. Similarmente
+\textit{shows} de televisão, como a apresentação dos prêmios Oscar e Emmy também entram na mesma
+categoria de filmes. Apesar do IMDb considerar diferentes tipos de filmes, como \code{tv movie} e
+\code{movie}, essa diferenciação ainda não é uma boa classificação, já que haviam exceções a regra.
 
 Para definirmos de forma mais rigorosa o que é um filme, tivemos que supor alguns conceitos sobre
 filmes. Em particular, consideramos um filme um título do IMDb que segue as seguintes regras:
@@ -101,6 +103,31 @@ filmes. Em particular, consideramos um filme um título do IMDb que segue as seg
 \end{enumerate}
 
 Com estas fortes retrições, foi possível selecionar um conjunto consistente de filmes.
+
+Na ontologia, chamamos de \code{Movie} o conceito de filme. Definimos um \code{Movie} como uma
+subclasse de \code{Project}, conceito da ontologia \code{FOAF-modified} dada. Todo \code{Movie}
+possui as propriedades de dado \code{movieTitle} do tipo \code{xsd:string} e \code{releaseYear} do
+tipo \code{xsd:positiveInteger}. Estas propriedades representam, respectivamente, o título do
+filme e o ano de lançamento.
+
+Chamaremos de \code{projeto} o prefixo da ontologia que criamos, e \code{foaf-modified} a ontologia
+\code{FOAF-modified} dada no enunciado. A relação (i.e.\ propriedade de objeto)
+\code{foaf-modified:maker} de um \code{foaf-modified:Project} foi usado para denotar todos os
+colaboradores (i.e.\ atores e diretores) de um \code{projeto:Movie}.
+
+\subsection{Atores e diretores}
+
+Para os conceitos \code{Actor} e \code{Director}, usamos o conceito \code{foaf-modified:Person}
+como superclasse para ambos. As propriedades de dado de ambas são \code{familyName},
+\code{firstName} e \code{gender}, todas da ontologia \code{foaf-modified}. Estas representam,
+respectivamente, o sobrenome, primeiro nome e gênero de um \code{Person}. Para \code{gender},
+estabelecemos que os possíveis valores poderiam ser ``\code{male}'', ``\code{female}'' ou
+``\code{nil}''.
+
+A relação \code{foaf-modified:made} mapeia um \code{Person} em um \code{Movie}. Seu inverso é
+\code{foaf-modified:maker}. Criamos duas relações subclasse de \code{made}: \code{actsIn} e
+\code{directs}, mapeando, respectivamente, um ator em um filme que ele atua e um diretor em um
+filme que ele dirige.
 
 %--------------------------------------------------------------------------------------------------
 \end{document}
