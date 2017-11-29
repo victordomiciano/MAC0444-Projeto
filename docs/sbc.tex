@@ -35,7 +35,7 @@
 
 \newcommand\defeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
 
-\captionsetup[table]{labelsep=space}
+\captionsetup[table]{labelsep=space,labelfont=bf}
 
 \setlistdepth{9}
 \newlist{deepitemize}{itemize}{9}
@@ -55,6 +55,8 @@
 \renewcommand{\implies}{\Rightarrow}
 
 \newcommand{\bigo}{\mathcal{O}}
+
+\newtheorem{assumption}{Suposição}
 
 \setlength{\parskip}{1em}
 
@@ -124,10 +126,117 @@ respectivamente, o sobrenome, primeiro nome e gênero de um \code{Person}. Para 
 estabelecemos que os possíveis valores poderiam ser ``\code{male}'', ``\code{female}'' ou
 ``\code{nil}''.
 
+Ao criar o \code{.owl} a partir do dataset, fizemos as seguintes suposições sobre as pessoas:
+
+\begin{enumerate}
+  \item O primeiro nome de uma pessoa no IMDb é o seu \code{firstName};
+  \item O último nome de uma pessoa no IMDb é o seu \code{familyName};
+  \item O gênero de uma pessoa foi definido a partir de consultas no \code{imdbpy}.
+\end{enumerate}
+
+Com relação a suposição 3, o dataset do IMDb não especificam gênero de uma pessoa. No entanto, o
+\code{imdbpy} gera uma tabela em SQL com os gêneros de cada ator, tendo estes valores \code{'f'},
+\code{'m'} ou um valor nulo quando não especificado. Escolhemos seguir a mesma convenção neste
+projeto.
+
 A relação \code{foaf-modified:made} mapeia um \code{Person} em um \code{Movie}. Seu inverso é
 \code{foaf-modified:maker}. Criamos duas relações subclasse de \code{made}: \code{actsIn} e
 \code{directs}, mapeando, respectivamente, um ator em um filme que ele atua e um diretor em um
 filme que ele dirige.
+
+Para selecionarmos a lista de pessoas iniciais (i.e.\ Uma Thurman, Harvey Keitel, etc.), assumimos
+que a pessoa de interesse é o primeiro resultado da busca de seu nome concatenado com
+``\code{(I)}''. Isso garante que o homônimo escolhido é sempre o primeiro em popularidade no IMDb.
+
+\subsection{Relações}
+
+Resumimos as relações existentes na tabela abaixo:
+\newpage
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lllc}
+    Nome & Domínio & Imagem & Superclasse\\
+    \midrule
+    \code{made} & \code{Person} & \code{Movie} & -\\
+    \code{maker} & \code{Movie} & \code{Person} & -\\
+    \code{actsIn} & \code{Actor} & \code{Movie} & \code{made}\\
+    \code{directs} & \code{Director} & \code{Movie} & \code{made}\\
+  \end{tabular}
+  \captionsetup{justification=raggedright}
+  \caption{Relações entre conceitos. As colunas indicam o nome da relação, o domínio e imagem, e a
+  superclasse da relação. Como \code{made} e \code{maker} têm como superclasse a raíz comum de
+  todas as relações, omitimos e no lugar indicamos com o caractere '-'.}
+\end{table}
+
+\subsection{Instâncias}
+
+Foram escolhidas as instâncias de \code{Movie}, \code{Actor} e \code{Director} como descrito no
+enunciado. Depois de aplicadas as restrições descritas nas subseções 1.1 e 1.2, geramos o
+\code{.owl} com a sintaxe Manchester.
+
+Cada instância de \code{Movie} é do formato:
+
+\begin{lstlisting}[frame=single,mathescape=true]
+Individual: projeto:movieTitle
+
+  Types:
+    projeto:Movie
+
+  Facts:
+    projeto:movieTitle "Movie Title",
+    foaf-modified:maker projeto:director1,
+    $\vdots$
+    foaf-modified:maker projeto:directorN,
+    foaf-modified:maker projeto:actor1,
+    $\vdots$
+    foaf-modified:maker projeto:actorM,
+    projeto:releaseYear Y
+\end{lstlisting}
+
+Onde \code{Y} é um inteiro positivo. A lista de atores e diretores não são ordenadas como no
+exemplo. Para uma instância de \code{Actor} ou \code{Director} temos o seguinte formato:
+
+\newpage
+
+\begin{lstlisting}[frame=single,mathescape=true]
+Individual: projeto:personName
+
+  Types:
+    projeto:Actor,
+    projeto:Director
+
+  Facts:
+    projeto:actsIn projeto:movie1,
+    $\vdots$
+    projeto:actsIn projeto:movieN,
+    projeto:directs projeto:movie1,
+    $\vdots$
+    projeto:directs projeto:movieM,
+    foaf-modified:familyName "Name",
+    foaf-modified:firstName "Person",
+    foaf-modified:gender ["male" ou "female" ou "nil"]
+\end{lstlisting}
+
+Para todas as instâncias, o nome da instância é baseado no seu título ou nome. Usamos o formato
+conhecido como \code{camelCase} para formatar os nomes das instâncias. Para atores que não são
+diretores, omitimos a vírgula anterior e \code{projeto:Diretor} em \code{Types:}. Fazemos o análogo
+para diretores que não atuam em nenhum filme.
+
+\subsection{Unicidade}
+
+Quando definimos os nomes dos atores e diretores, consideramos que se alguma pessoa $p$ possui
+mesmo \code{firstName} e \code{familyName} que outra pessoa $q$, então $p=q$. Isso simplifica a
+ontologia, tratando homônimos como a mesma pessoa. Também supomos que todo filme que títulos
+diferentes. Apesar de não ser verdade, esta suposição simplifica bastante a ontologia.
+
+Uma consequência das suposições anteriores é que não precisamos usar a propriedade
+\code{DifferentFrom} do OWL, evitando que o arquivo cresça exponencialmente, já que toda junção de
+primeiro com último nome será diferente, assim como todo título de filme será distinto.
+
+\section{Consultas}
+
+\section{Resultados}
 
 %--------------------------------------------------------------------------------------------------
 \end{document}
