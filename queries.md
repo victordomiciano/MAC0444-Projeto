@@ -1,3 +1,6 @@
+Arquivo de rascunho para as queries, ainda não finalizadas (falta fazer o 
+filter em cada uma, com o que seria o parâmetro de entrada).
+
 #Q1
 
 SELECT ?p ?f
