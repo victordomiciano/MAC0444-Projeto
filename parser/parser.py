@@ -42,25 +42,37 @@ def valid_movie(m):
       return True
   return False
 
+def contains(v, p):
+  for u in v:
+    if type(p) == list:
+      if p[0] == u[0] and p[1] == u[1]:
+        return True
+    else:
+      if p == u:
+        return True
+  return False
+
 def append_key(d, k, e):
   if not k in d:
     d[k] = []
-  d[k].append(e)
+  if not contains(d[k], e):
+    d[k].append(e)
 
 # Select only movies. Discard TV series.
 def validate_movs(ai, r, m):
   I.update(m)
   i = m.movieID
-  if valid_movie(m) and (not i in movs):
+  if valid_movie(m):
+    if not i in movs:
+      q_movs.append(m)
     movs[i] = m
-    q_movs.append(m)
     append_key(agt_refs, ai, [r, i])
     append_key(mov_cast, i, ai)
 
 # Adds person e's movies from l to dict d.
 def add_to(l, d, e, r, m=None):
   i = e.personID
-  if l and (not i in d):
+  if l:
     d[i] = e
     if m is None:
       for t in l:
