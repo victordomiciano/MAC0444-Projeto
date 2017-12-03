@@ -7,12 +7,12 @@ O nome do filme deve ser substituído de <nome> em
 
 FILTER REGEX(?f, "^<nome>$") .
 
-SELECT ?1n ?2n
+SELECT ?1x ?2x
 WHERE {
   ?x projeto:actsIn ?m .
   ?m projeto:movieTitle ?f .
-  ?x foaf-modified:firstName ?1n .
-  ?x foaf-modified:familyName ?2n .
+  ?x foaf-modified:firstName ?1x .
+  ?x foaf-modified:familyName ?2x .
   FILTER REGEX(?f, "^Isle of Dogs$") .
 }
 
@@ -27,10 +27,10 @@ SELECT ?f
 WHERE {
   ?d projeto:directs ?m .
   ?m projeto:movieTitle ?f .
-  ?d foaf-modified:firstName ?1n .
-  ?d foaf-modified:familyName ?2n .
-  FILTER REGEX(?1n, "^Wes?") .
-  FILTER REGEX(?2n, "^Anderson?") .
+  ?d foaf-modified:firstName ?1d .
+  ?d foaf-modified:familyName ?2d .
+  FILTER REGEX(?1d, "^Wes?") .
+  FILTER REGEX(?2d, "^Anderson?") .
 }
 
 #Q3
@@ -39,10 +39,10 @@ SELECT ?f
 WHERE {
   ?x projeto:actsIn ?m .
   ?m projeto:movieTitle ?f .
-  ?x foaf-modified:firstName ?1n .
-  ?x foaf-modified:familyName ?2n .
-  FILTER REGEX(?1n, "^Uma?") .
-  FILTER REGEX(?2n, "^Thurman?") .
+  ?x foaf-modified:firstName ?1x .
+  ?x foaf-modified:familyName ?2x .
+  FILTER REGEX(?1x, "^Uma?") .
+  FILTER REGEX(?2x, "^Thurman?") .
 }
 
 #Q4 actsIn
@@ -51,20 +51,20 @@ SELECT ?f
 WHERE {
   ?x projeto:actsIn ?m .
 
-  ?x foaf-modified:firstName ?1n .
-  ?x foaf-modified:familyName ?2n .
+  ?x foaf-modified:firstName ?1x .
+  ?x foaf-modified:familyName ?2x .
 
-  FILTER REGEX(?1n, "^Uma?") .
-  FILTER REGEX(?2n, "^Thurman?") .
+  FILTER REGEX(?1x, "^Uma?") .
+  FILTER REGEX(?2x, "^Thurman?") .
 
   ?y projeto:actsIn ?m .
   ?m projeto:movieTitle ?f .
 
-  ?y foaf-modified:firstName ?1m .
-  ?y foaf-modified:familyName ?2m .
+  ?y foaf-modified:firstName ?1y .
+  ?y foaf-modified:familyName ?2y .
 
-  FILTER REGEX(?1m, "^Mark?") .
-  FILTER REGEX(?2m, "^Webber?") .
+  FILTER REGEX(?1y, "^Mark?") .
+  FILTER REGEX(?2y, "^Webber?") .
 }
 
 #Q5
@@ -73,19 +73,19 @@ SELECT ?1d ?2d
 WHERE {
   ?x projeto:actsIn ?m .
 
-  ?x foaf-modified:firstName ?1n .
-  ?x foaf-modified:familyName ?2n .
+  ?x foaf-modified:firstName ?1x .
+  ?x foaf-modified:familyName ?2x .
 
-  FILTER REGEX(?1n, "^Uma?") .
-  FILTER REGEX(?2n, "^Thurman?") .
+  FILTER REGEX(?1x, "^Uma?") .
+  FILTER REGEX(?2x, "^Thurman?") .
 
   ?y projeto:actsIn ?m .
 
-  ?y foaf-modified:firstName ?1m .
-  ?y foaf-modified:familyName ?2m .
+  ?y foaf-modified:firstName ?1y .
+  ?y foaf-modified:familyName ?2y .
 
-  FILTER REGEX(?1m, "^Mark?") .
-  FILTER REGEX(?2m, "^Webber?") .
+  FILTER REGEX(?1y, "^Mark?") .
+  FILTER REGEX(?2y, "^Webber?") .
 
   ?d projeto:directs ?m .
   ?d foaf-modified:firstName ?1d .
@@ -100,11 +100,11 @@ WHERE {
   WHERE {
     ?x projeto:actsIn ?m .
 
-    ?x foaf-modified:firstName ?1n .
-    ?x foaf-modified:familyName ?2n .
+    ?x foaf-modified:firstName ?1x .
+    ?x foaf-modified:familyName ?2x .
 
-    FILTER REGEX(?1n, "^Uma?") .
-    FILTER REGEX(?2n, "^Thurman?") .
+    FILTER REGEX(?1x, "^Uma?") .
+    FILTER REGEX(?2x, "^Thurman?") .
 
     ?d projeto:directs ?m .
     ?d foaf-modified:firstName ?1d .
@@ -169,39 +169,65 @@ WHERE {
   ?d foaf-modified:familyName ?2d .
 }
 
-#Q9 Muito pesado dependendo dos filmes envolvidos.
-
-Plain Pleasures (1996)
+#Q9
 
 SELECT ?1a ?2a ?1b ?2b
-WHERE {
-  ?x projeto:actsIn ?m .
-  
-  ?m projeto:releaseYear ?year .
-  FILTER (?year >= 1980 && ?year <= 2001) .
+WHERE {{
+  SELECT ?m
+  WHERE {
+    ?x projeto:actsIn ?m .
+    
+    ?m projeto:releaseYear ?year .
+    FILTER (?year >= 1980 && ?year <= 2004) .
 
-  ?x foaf-modified:firstName ?1x .
-  ?x foaf-modified:familyName ?2x .
+    ?x foaf-modified:firstName ?1x .
+    ?x foaf-modified:familyName ?2x .
 
-  FILTER REGEX(?1x, "^Frances?") .
-  FILTER REGEX(?2x, "^Mcdormand?") .
+    FILTER REGEX(?1x, "^Uma?") .
+    FILTER REGEX(?2x, "^Thurman?") .
 
-  ?y projeto:actsIn ?m .
+    ?y projeto:actsIn ?m .
 
-  ?y foaf-modified:firstName ?1y .
-  ?y foaf-modified:familyName ?2y .
+    ?y foaf-modified:firstName ?1y .
+    ?y foaf-modified:familyName ?2y .
 
-  FILTER REGEX(?1y, "^Will?") .
-  FILTER REGEX(?2y, "^Patton?") .
+    FILTER REGEX(?1y, "^Lucy?") .
+    FILTER REGEX(?2y, "^Liu?") .
+  }}
 
   ?a projeto:actsIn ?m .
   ?b projeto:actsIn ?m .
+
   FILTER (?a != ?b) .
 
   ?a foaf-modified:firstName ?1a .
-  ?a foaf-modified:familyName ?2a .
+  ?a foaf-modified:familyName ?2a . 
 
   ?b foaf-modified:firstName ?1b .
-  ?b foaf-modified:familyName ?2b .  
-}
+  ?b foaf-modified:familyName ?2b .
+} ORDER BY ?1a ?2a ?1b ?2b
 
+#Q10
+
+SELECT DISTINCT ?f
+WHERE {
+  {
+    SELECT ?m
+    WHERE {
+      ?d projeto:directs ?m .
+      ?d foaf-modified:firstName ?1d .
+      ?d foaf-modified:familyName ?2d .
+      FILTER REGEX(?1d, "^Quentin?") .
+      FILTER REGEX(?2d, "^Tarantino?") .
+    }
+  }
+
+  ?a projeto:actsIn ?m .
+  ?a foaf-modified:firstName ?1a .
+  ?a foaf-modified:familyName ?2a .
+   
+  ?m projeto:movieTitle ?f .
+
+  FILTER ((REGEX(?1a, "^Clive?") && REGEX(?2a, "^Owen?")) || (REGEX(?1a, "^Jamie?") && REGEX(?2a, "^Dunno?"))) .
+
+}
