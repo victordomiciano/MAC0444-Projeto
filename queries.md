@@ -1,7 +1,7 @@
 Arquivo de rascunho para as queries, ainda não finalizadas (falta fazer o 
 filter em cada uma, com o que seria o parâmetro de entrada).
 
-#Q1
+#Q1 - Quais atores participaram do filme F?
 
 O nome do filme deve ser substituído de <nome> em 
 
@@ -16,7 +16,7 @@ WHERE {
   FILTER REGEX(?f, "^Isle of Dogs$") .
 }
 
-#Q2
+#Q2 - Quais filmes foram dirigidos pelo diretor D?
 
 O nome do diretor deve ser substituído de <nome> de modo que
 
@@ -33,7 +33,7 @@ WHERE {
   FILTER REGEX(?2d, "^Anderson?") .
 }
 
-#Q3
+#Q3 - Em quais filmes o ator X atuou?
 
 SELECT ?f
 WHERE {
@@ -45,9 +45,9 @@ WHERE {
   FILTER REGEX(?2x, "^Thurman?") .
 }
 
-#Q4 actsIn
+#Q4 actsIn - Em quais filmes o ator X atuou junto com Y?
 
-SELECT ?f
+SELECT DISTINCT ?f
 WHERE {
   ?x projeto:actsIn ?m .
 
@@ -63,13 +63,13 @@ WHERE {
   ?y foaf-modified:firstName ?1y .
   ?y foaf-modified:familyName ?2y .
 
-  FILTER REGEX(?1y, "^Mark?") .
-  FILTER REGEX(?2y, "^Webber?") .
+  FILTER REGEX(?1y, "^Samuel?") .
+  FILTER REGEX(?2y, "^Jackson?") .
 }
 
-#Q5
+#Q5 - Quem foram os diretores dos filmes nos quais os atores X e Y atuam juntos?
 
-SELECT ?1d ?2d
+SELECT DISTINCT ?1d ?2d
 WHERE {
   ?x projeto:actsIn ?m .
 
@@ -84,66 +84,106 @@ WHERE {
   ?y foaf-modified:firstName ?1y .
   ?y foaf-modified:familyName ?2y .
 
-  FILTER REGEX(?1y, "^Mark?") .
-  FILTER REGEX(?2y, "^Webber?") .
+  FILTER REGEX(?1y, "^Samuel?") .
+  FILTER REGEX(?2y, "^Jackson?") .
 
   ?d projeto:directs ?m .
   ?d foaf-modified:firstName ?1d .
   ?d foaf-modified:familyName ?2d .
 }
 
-#Q6
+#Q6 - Qual o diretor que mais dirigiu filmes do ator X?
 
-SELECT ?1d ?2d (MAX(?vezes) AS ?max)
-WHERE {
-  SELECT ?1d ?2d (COUNT(?d) AS ?vezes)
-  WHERE {
-    ?x projeto:actsIn ?m .
+SELECT ?1d ?2d WHERE {
+  {
+    SELECT ?d (COUNT(?d) AS ?count)
+    WHERE {
+      ?x projeto:actsIn ?m .
 
-    ?x foaf-modified:firstName ?1x .
-    ?x foaf-modified:familyName ?2x .
+      ?x foaf-modified:firstName ?1x .
+      ?x foaf-modified:familyName ?2x .
 
-    FILTER REGEX(?1x, "^Uma?") .
-    FILTER REGEX(?2x, "^Thurman?") .
+      FILTER REGEX(?1x, "^Frances?") .
+      FILTER REGEX(?2x, "^Mcdormand?") .
 
-    ?d projeto:directs ?m .
-    ?d foaf-modified:firstName ?1d .
-    ?d foaf-modified:familyName ?2d .
-  } GROUP BY ?1d ?2d
-} GROUP BY ?1d ?2d
+      ?d projeto:directs ?m .
+    } GROUP BY ?d
+  }
 
-#Q7
+  {
+    SELECT (MAX(?count) AS ?max)
+    WHERE {
+      {
+        SELECT ?d (COUNT(?d) AS ?count)
+        WHERE {
+          ?x projeto:actsIn ?m .
 
-SELECT ?1a ?2a (MAX(?vezes) AS ?max)
-WHERE {
-  SELECT ?1a ?2a (COUNT(?a) AS ?vezes)
-  WHERE {
-    ?d projeto:directs ?m .
+          ?x foaf-modified:firstName ?1x .
+          ?x foaf-modified:familyName ?2x .
 
-    ?d foaf-modified:firstName ?1d .
-    ?d foaf-modified:familyName ?2d .
+          FILTER REGEX(?1x, "^Frances?") .
+          FILTER REGEX(?2x, "^Mcdormand?") .
 
-    FILTER REGEX(?1d, "^Quentin?") .
-    FILTER REGEX(?2d, "^Tarantino?") .
+          ?d projeto:directs ?m .
 
-    ?a projeto:actsIn ?m .
+        } GROUP BY ?d
+      }
+    } 
+  }
 
-    ?a foaf-modified:firstName ?1a .
-    ?a foaf-modified:familyName ?2a .
-  } GROUP BY ?1a ?2a
-} GROUP BY ?1a ?2a
+  FILTER (?count = ?max)
 
-#Q8
+  ?d foaf-modified:firstName ?1d .
+  ?d foaf-modified:familyName ?2d .
+}
 
-Filme testado no caso é Chelsea Walls (2001) dirigido por Ethan Hawke.
+#Q7 - Qual o ator que mais aparece nos filmes do diretor D?
 
-Se mudarmos o filter para 
+SELECT ?1x ?2x WHERE {
+  {
+    SELECT ?x (COUNT(?x) AS ?count)
+    WHERE {
+      ?d projeto:directs ?m .
 
-FILTER (?year >= 1980 && ?year <= 2000) .
+      ?d foaf-modified:firstName ?1d .
+      ?d foaf-modified:familyName ?2d .
 
-o filme deixa de aparecer.
+      FILTER REGEX(?1d, "^Wes?") .
+      FILTER REGEX(?2d, "^Anderson?") .
 
-SELECT ?1d ?2d
+      ?x projeto:actsIn ?m .
+    } GROUP BY ?x
+
+  }
+  {
+    SELECT (MAX(?count) AS ?max)
+    WHERE {
+      {
+        SELECT ?x (COUNT(?x) AS ?count)
+        WHERE {
+          ?d projeto:directs ?m .
+
+          ?d foaf-modified:firstName ?1d .
+          ?d foaf-modified:familyName ?2d .
+
+          FILTER REGEX(?1d, "^Wes?") .
+          FILTER REGEX(?2d, "^Anderson?") .
+
+          ?x projeto:actsIn ?m .
+        } GROUP BY ?x
+      }
+    }
+  }
+
+  FILTER (?count = ?max) .
+
+  ?x foaf-modified:firstName ?1x .
+  ?x foaf-modified:familyName ?2x .
+}
+
+#Q8 - Entre os anos N1 e N2, quais diretores dirigiram filmes onde X e Y aparecem?
+
+SELECT DISTINCT ?1d ?2d
 WHERE {
   ?x projeto:actsIn ?m .
   
@@ -161,39 +201,41 @@ WHERE {
   ?y foaf-modified:firstName ?1y .
   ?y foaf-modified:familyName ?2y .
 
-  FILTER REGEX(?1y, "^Mark?") .
-  FILTER REGEX(?2y, "^Webber?") .
+  FILTER REGEX(?1y, "^Samuel?") .
+  FILTER REGEX(?2y, "^Jackson?") .
 
   ?d projeto:directs ?m .
   ?d foaf-modified:firstName ?1d .
   ?d foaf-modified:familyName ?2d .
 }
 
-#Q9
+#Q9 - Entre os anos N1 e N2, quais atores atuaram juntos nos filmes onde X e Y aparecem?
 
-SELECT ?1a ?2a ?1b ?2b
-WHERE {{
-  SELECT ?m
-  WHERE {
-    ?x projeto:actsIn ?m .
-    
-    ?m projeto:releaseYear ?year .
-    FILTER (?year >= 1980 && ?year <= 2004) .
+SELECT DISTINCT ?1a ?2a ?1b ?2b
+WHERE {
+  {
+    SELECT ?m
+    WHERE {
+      ?x projeto:actsIn ?m .
+      
+      ?m projeto:releaseYear ?year .
+      FILTER (?year >= 1980 && ?year <= 2004) .
 
-    ?x foaf-modified:firstName ?1x .
-    ?x foaf-modified:familyName ?2x .
+      ?x foaf-modified:firstName ?1x .
+      ?x foaf-modified:familyName ?2x .
 
-    FILTER REGEX(?1x, "^Uma?") .
-    FILTER REGEX(?2x, "^Thurman?") .
+      FILTER REGEX(?1x, "^Bill?") .
+      FILTER REGEX(?2x, "^Murray?") .
 
-    ?y projeto:actsIn ?m .
+      ?y projeto:actsIn ?m .
 
-    ?y foaf-modified:firstName ?1y .
-    ?y foaf-modified:familyName ?2y .
+      ?y foaf-modified:firstName ?1y .
+      ?y foaf-modified:familyName ?2y .
 
-    FILTER REGEX(?1y, "^Lucy?") .
-    FILTER REGEX(?2y, "^Liu?") .
-  }}
+      FILTER REGEX(?1y, "^Frank?") .
+      FILTER REGEX(?2y, "^Pellegrino?") .
+    }
+  }
 
   ?a projeto:actsIn ?m .
   ?b projeto:actsIn ?m .
@@ -206,28 +248,27 @@ WHERE {{
   ?b foaf-modified:firstName ?1b .
   ?b foaf-modified:familyName ?2b .
 } ORDER BY ?1a ?2a ?1b ?2b
-
-#Q10
+#Q10 - Quais filmes do diretor do filme F possuem X ou Y como atores?
 
 SELECT DISTINCT ?f
 WHERE {
   {
-    SELECT ?m
+    SELECT ?d
     WHERE {
+      ?m projeto:movieTitle ?f .
+      FILTER REGEX(?f, "^Pulp Fiction?") .
       ?d projeto:directs ?m .
-      ?d foaf-modified:firstName ?1d .
-      ?d foaf-modified:familyName ?2d .
-      FILTER REGEX(?1d, "^Quentin?") .
-      FILTER REGEX(?2d, "^Tarantino?") .
     }
   }
 
+  ?d projeto:directs ?m .
   ?a projeto:actsIn ?m .
+
   ?a foaf-modified:firstName ?1a .
   ?a foaf-modified:familyName ?2a .
    
   ?m projeto:movieTitle ?f .
 
-  FILTER ((REGEX(?1a, "^Clive?") && REGEX(?2a, "^Owen?")) || (REGEX(?1a, "^Jamie?") && REGEX(?2a, "^Dunno?"))) .
-
+  FILTER ((REGEX(?1a, "(^Clive$)") && REGEX(?2a, "Owen")) 
+    || (REGEX(?1a, "(^Jamie$)") && REGEX(?2a, "(^Dunno$)"))) .
 }
