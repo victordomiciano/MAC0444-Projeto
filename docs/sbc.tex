@@ -104,7 +104,7 @@ filmes. Em particular, consideramos um filme um título do IMDb que segue as seg
   \item É do tipo \code{movie}.
 \end{enumerate}
 
-Com estas fortes retrições, foi possível selecionar um conjunto consistente de filmes.
+Com estas fortes restrições, foi possível selecionar um conjunto consistente de filmes.
 
 Na ontologia, chamamos de \code{Movie} o conceito de filme. Definimos um \code{Movie} como uma
 subclasse de \code{Project}, conceito da ontologia \code{FOAF-modified} dada. Todo \code{Movie}
@@ -114,7 +114,7 @@ filme e o ano de lançamento.
 
 Chamaremos de \code{projeto} o prefixo da ontologia que criamos, e \code{foaf-modified} a ontologia
 \code{FOAF-modified} dada no enunciado. A relação (i.e.\ propriedade de objeto)
-\code{foaf-modified:maker} de um \code{foaf-modified:Project} foi usado para denotar todos os
+\code{foaf-modified:maker} de um \code{foaf-modified:Project} foi usada para denotar todos os
 colaboradores (i.e.\ atores e diretores) de um \code{projeto:Movie}.
 
 \subsection{Atores e diretores}
@@ -134,13 +134,13 @@ Ao criar o \code{.owl} a partir do dataset, fizemos as seguintes suposições so
   \item O gênero de uma pessoa foi definido a partir de consultas no \code{imdbpy}.
 \end{enumerate}
 
-Com relação a suposição 3, o dataset do IMDb não especificam gênero de uma pessoa. No entanto, o
+Com relação a suposição 3, o dataset do IMDb não especifica gênero de uma pessoa. No entanto, o
 \code{imdbpy} gera uma tabela em SQL com os gêneros de cada ator, tendo estes valores \code{'f'},
 \code{'m'} ou um valor nulo quando não especificado. Escolhemos seguir a mesma convenção neste
 projeto.
 
 A relação \code{foaf-modified:made} mapeia um \code{Person} em um \code{Movie}. Seu inverso é
-\code{foaf-modified:maker}. Criamos duas relações subclasse de \code{made}: \code{actsIn} e
+\code{foaf-modified:maker}. Criamos duas subrelações de \code{made}: \code{actsIn} e
 \code{directs}, mapeando, respectivamente, um ator em um filme que ele atua e um diretor em um
 filme que ele dirige.
 
@@ -220,19 +220,21 @@ Individual: projeto:personName
 
 Para todas as instâncias, o nome da instância é baseado no seu título ou nome. Usamos o formato
 conhecido como \code{camelCase} para formatar os nomes das instâncias. Para atores que não são
-diretores, omitimos a vírgula anterior e \code{projeto:Diretor} em \code{Types:}. Fazemos o análogo
+diretores, omitimos a vírgula e a linha \code{projeto:Director} em \code{Types:}. Fazemos o análogo
 para diretores que não atuam em nenhum filme.
 
 \subsection{Unicidade}
 
 Quando definimos os nomes dos atores e diretores, consideramos que se alguma pessoa $p$ possui
 mesmo \code{firstName} e \code{familyName} que outra pessoa $q$, então $p=q$. Isso simplifica a
-ontologia, tratando homônimos como a mesma pessoa. Também supomos que todo filme que títulos
-diferentes. Apesar de não ser verdade, esta suposição simplifica bastante a ontologia.
+ontologia, tratando homônimos como a mesma pessoa. Também supomos o análogo para filmes. Se um
+filme $m$ tem mesmo título que $n$, então $m=n$. Apesar de não ser verdade, esta suposição
+simplifica bastante a ontologia.
 
 Uma consequência das suposições anteriores é que não precisamos usar a propriedade
 \code{DifferentFrom} do OWL, evitando que o arquivo cresça exponencialmente, já que toda junção de
-primeiro com último nome será diferente, assim como todo título de filme será distinto.
+primeiro com último nome será diferente. Da mesma forma, todo título de filme será distinto, e
+portanto todo filme é único.
 
 \section{Consultas}
 
@@ -464,7 +466,7 @@ WHERE {
 } ORDER BY ?1a ?2a ?1b ?2b
 \end{lstlisting}
 \subsection{Consulta 10}
-Quais filmes do diretor do filme F \code{?f = "Pulp Fiction"} possuem X (\code{?1x = "Clive"} \code{?2x = "Owen"}) ou Y (\code{?1y = "Jamie"} \code{?2y = "Dunno"}) como atores?
+Quais filmes do diretor do filme F (\code{?f = "Pulp Fiction"}) possuem X (\code{?1x = "Clive"} \code{?2x = "Owen"}) ou Y (\code{?1y = "Jamie"} \code{?2y = "Dunno"}) como atores?
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT DISTINCT ?f
 WHERE {
