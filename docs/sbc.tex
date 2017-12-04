@@ -269,7 +269,6 @@ WHERE {
 \end{lstlisting}
 \subsection{Consulta 2}
 Quais filmes foram dirigidos pelo diretor D (\code{?1d = "Wes"} \code{?2d = "Anderson"})?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT ?f
 WHERE {
@@ -282,8 +281,7 @@ WHERE {
 }
 \end{lstlisting}
 \subsection{Consulta 3}
-Em quais filmes o ator X (\code{?1x = "Uma"} \code{?2x = "Thurman"}) atuou?
-
+Em quais filmes o ator X (\code{?1x = "Samuel"} \code{?2x = "Jackson"}) atuou?
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT ?f
 WHERE {
@@ -291,56 +289,43 @@ WHERE {
   ?m projeto:movieTitle ?f .
   ?x foaf-modified:firstName ?1x .
   ?x foaf-modified:familyName ?2x .
-  FILTER REGEX(?1x, "(^Uma?)") .
-  FILTER REGEX(?2x, "(^Thurman?)") .
+  FILTER REGEX(?1x, "(^Samuel?)") .
+  FILTER REGEX(?2x, "(^Jackson?)") .
 }
 \end{lstlisting}
 \subsection{Consulta 4}
 Em quais filmes o ator X (\code{?1x = "Uma"} \code{?2x = "Thurman"}) atuou junto com Y (\code{?1y = "Samuel"} \code{?2y = "Jackson"})?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT DISTINCT ?f
 WHERE {
   ?x projeto:actsIn ?m .
-
   ?x foaf-modified:firstName ?1x .
   ?x foaf-modified:familyName ?2x .
-
   FILTER REGEX(?1x, "(^Uma?)") .
   FILTER REGEX(?2x, "(^Thurman?)") .
-
   ?y projeto:actsIn ?m .
   ?m projeto:movieTitle ?f .
-
   ?y foaf-modified:firstName ?1y .
   ?y foaf-modified:familyName ?2y .
-
   FILTER REGEX(?1y, "(^Samuel?)") .
   FILTER REGEX(?2y, "(^Jackson?)") .
 }
 \end{lstlisting}
 \subsection{Consulta 5}
 Quem foram os diretores dos filmes nos quais os atores X (\code{?1x = "Uma"} \code{?2x = "Thurman"}) e Y (\code{?1y = "Samuel"} \code{?2y = "Jackson"}) atuam juntos?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT DISTINCT ?1d ?2d
 WHERE {
   ?x projeto:actsIn ?m .
-
   ?x foaf-modified:firstName ?1x .
   ?x foaf-modified:familyName ?2x .
-
   FILTER REGEX(?1x, "(^Uma?)") .
   FILTER REGEX(?2x, "(^Thurman?)") .
-
   ?y projeto:actsIn ?m .
-
   ?y foaf-modified:firstName ?1y .
   ?y foaf-modified:familyName ?2y .
-
   FILTER REGEX(?1y, "(^Samuel?)") .
   FILTER REGEX(?2y, "(^Jackson?)") .
-
   ?d projeto:directs ?m .
   ?d foaf-modified:firstName ?1d .
   ?d foaf-modified:familyName ?2d .
@@ -348,20 +333,16 @@ WHERE {
 \end{lstlisting}
 \subsection{Consulta 6}
 Qual o diretor que mais dirigiu filmes do ator X (\code{?1x = "Frances"} \code{?2x = "Mcdormand"})?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT ?1d ?2d WHERE {
   {
     SELECT ?d (COUNT(?d) AS ?count)
     WHERE {
       ?x projeto:actsIn ?m .
-
       ?x foaf-modified:firstName ?1x .
       ?x foaf-modified:familyName ?2x .
-
       FILTER REGEX(?1x, "(^Frances?)") .
       FILTER REGEX(?2x, "(^Mcdormand?)") .
-
       ?d projeto:directs ?m .
     } GROUP BY ?d
   }
@@ -372,41 +353,32 @@ SELECT ?1d ?2d WHERE {
         SELECT ?d (COUNT(?d) AS ?count)
         WHERE {
           ?x projeto:actsIn ?m .
-
           ?x foaf-modified:firstName ?1x .
           ?x foaf-modified:familyName ?2x .
-
           FILTER REGEX(?1x, "(^Frances?)") .
           FILTER REGEX(?2x, "(^Mcdormand?)") .
-
           ?d projeto:directs ?m .
         } GROUP BY ?d
       }
     } 
   }
-
   FILTER (?count = ?max)
-
   ?d foaf-modified:firstName ?1d .
   ?d foaf-modified:familyName ?2d .
 }
 \end{lstlisting}
 \subsection{Consulta 7}
 Qual o ator que mais aparece nos filmes do diretor D (\code{?1d = "Wes"} \code{?2d = "Anderson"})?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT ?1x ?2x WHERE {
   {
     SELECT ?x (COUNT(?x) AS ?count)
     WHERE {
       ?d projeto:directs ?m .
-
       ?d foaf-modified:firstName ?1d .
       ?d foaf-modified:familyName ?2d .
-
       FILTER REGEX(?1d, "(^Wes?)") .
       FILTER REGEX(?2d, "(^Anderson?)") .
-
       ?x projeto:actsIn ?m .
     } GROUP BY ?x
   }
@@ -417,28 +389,22 @@ SELECT ?1x ?2x WHERE {
         SELECT ?x (COUNT(?x) AS ?count)
         WHERE {
           ?d projeto:directs ?m .
-
           ?d foaf-modified:firstName ?1d .
           ?d foaf-modified:familyName ?2d .
-
           FILTER REGEX(?1d, "(^Wes?)") .
           FILTER REGEX(?2d, "(^Anderson?)") .
-
           ?x projeto:actsIn ?m .
         } GROUP BY ?x
       }
     }
   }
-
   FILTER (?count = ?max) .
-
   ?x foaf-modified:firstName ?1x .
   ?x foaf-modified:familyName ?2x .
 }
 \end{lstlisting}
 \subsection{Consulta 8}
 Entre os anos N1 e N2, quais diretores dirigiram filmes onde X (\code{?1x = "Uma"} \code{?2x = "Thurman"}) e Y (\code{?1y = "Samuel"} \code{?2y = "Jackson"}) aparecem?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT DISTINCT ?1d ?2d
 WHERE {
@@ -446,21 +412,15 @@ WHERE {
   
   ?m projeto:releaseYear ?year .
   FILTER (?year >= 1980 && ?year <= 2001) .
-
   ?x foaf-modified:firstName ?1x .
   ?x foaf-modified:familyName ?2x .
-
   FILTER REGEX(?1x, "(^Uma?)") .
   FILTER REGEX(?2x, "(^Thurman?)") .
-
   ?y projeto:actsIn ?m .
-
   ?y foaf-modified:firstName ?1y .
   ?y foaf-modified:familyName ?2y .
-
   FILTER REGEX(?1y, "(^Samuel?)") .
   FILTER REGEX(?2y, "(^Jackson?)") .
-
   ?d projeto:directs ?m .
   ?d foaf-modified:firstName ?1d .
   ?d foaf-modified:familyName ?2d .
@@ -468,7 +428,6 @@ WHERE {
 \end{lstlisting}
 \subsection{Consulta 9}
 Entre os anos N1 e N2, quais atores atuaram juntos nos filmes onde X (\code{?1x = "Bill"} \code{?2x = "Murray"}) e Y (\code{?1y = "Frank"} \code{?2y = "Pellegrino"}) aparecem?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT DISTINCT ?1a ?2a ?1b ?2b
 WHERE {
@@ -479,38 +438,28 @@ WHERE {
       
       ?m projeto:releaseYear ?year .
       FILTER (?year >= 1980 && ?year <= 2004) .
-
       ?x foaf-modified:firstName ?1x .
       ?x foaf-modified:familyName ?2x .
-
       FILTER REGEX(?1x, "(^Bill?)") .
       FILTER REGEX(?2x, "(^Murray?)") .
-
       ?y projeto:actsIn ?m .
-
       ?y foaf-modified:firstName ?1y .
       ?y foaf-modified:familyName ?2y .
-
       FILTER REGEX(?1y, "(^Frank?)") .
       FILTER REGEX(?2y, "(^Pellegrino?)") .
     }
   }
-
   ?a projeto:actsIn ?m .
   ?b projeto:actsIn ?m .
-
   FILTER (?a != ?b) .
-
   ?a foaf-modified:firstName ?1a .
   ?a foaf-modified:familyName ?2a . 
-
   ?b foaf-modified:firstName ?1b .
   ?b foaf-modified:familyName ?2b .
 } ORDER BY ?1a ?2a ?1b ?2b
 \end{lstlisting}
 \subsection{Consulta 10}
 Quais filmes do diretor do filme F \code{?f = "Pulp Fiction"} possuem X (\code{?1x = "Clive"} \code{?2x = "Owen"}) ou Y (\code{?1y = "Jamie"} \code{?2y = "Dunno"}) como atores?
-
 \begin{lstlisting}[basicstyle=\ttfamily,frame=single]
 SELECT DISTINCT ?f
 WHERE {
@@ -522,20 +471,203 @@ WHERE {
       ?d projeto:directs ?m .
     }
   }
-
   ?d projeto:directs ?m .
   ?a projeto:actsIn ?m .
-
   ?a foaf-modified:firstName ?1a .
   ?a foaf-modified:familyName ?2a .
    
   ?m projeto:movieTitle ?f .
-
   FILTER ((REGEX(?1a, "(^Clive$)") && REGEX(?2a, "(^Owen$)")) || (REGEX(?1a, "(^Jamie$)") && REGEX(?2a, "(^Dunno$)"))) .
 }
 \end{lstlisting}
-
 \section{Resultados}
+
+A seguir estão as tabelas com os resultados de cada consulta realizada anteriormente.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{ll}
+
+\textbf{1x} & \textbf{2x} \\ 
+Harvey & Keitel \\ 
+Kunichi & Nomura \\ 
+Jeff & Goldblum \\ 
+Akira & Ito \\ 
+Frances & Mcdormand \\ 
+Akira & Takayama \\ 
+Edward & Norton \\ 
+Liev & Schreiber \\ 
+Frank & Wood \\ 
+F & Abraham \\ 
+Bryan & Cranston \\ 
+Yoko & Ono \\ 
+Fisher & Stevens \\ 
+Tilda & Swinton \\ 
+Koyu & Rankin \\ 
+Greta & Gerwig \\ 
+Yojiro & Noda \\ 
+Courtney & Vance \\ 
+Mari & Natsuki \\ 
+Kara & Hayward \\ 
+Scarlett & Johansson \\ 
+Bill & Murray \\ 
+Bob & Balaban \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 1}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{l}
+
+\textbf{f} \\ 
+Hotel Chevalier \\ 
+Rushmore \\ 
+Moonrise Kingdom Animated Book Short \\ 
+The Life Aquatic with Steve Zissou \\ 
+Bottle Rocket \\ 
+Cousin Ben Troop Screening with Jason Schwartzman \\ 
+Castello Cavalcanti \\ 
+The Grand Budapest Hotel \\ 
+The Royal Tenenbaums \\ 
+Isle of Dogs \\ 
+Prada Candy \\ 
+The Darjeeling Limited \\ 
+Come Together A Fashion Picture in Motion \\ 
+Fantastic Mr Fox \\ 
+Moonrise Kingdom \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 2}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{l}
+
+\textbf{f} \\ 
+Inglourious Basterds \\ 
+Jackie Brown \\ 
+Django Unchained \\ 
+Youre Still Not Fooling Anybody \\ 
+Kill Bill Vol 2 \\ 
+Boffo Tinseltowns Bombs and Blockbusters \\ 
+Pulp Fiction \\ 
+Off the Menu The Last Days of Chasens \\ 
+The Hateful Eight \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 3}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{l}
+
+\textbf{f} \\ 
+Youre Still Not Fooling Anybody \\ 
+Kill Bill Vol 2 \\ 
+Boffo Tinseltowns Bombs and Blockbusters \\ 
+Pulp Fiction \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 4}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{ll}
+
+\textbf{1d} & \textbf{2d} \\ 
+Bill & Couturie \\ 
+Mike & White \\ 
+Quentin & Tarantino \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 5}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{ll}
+
+\textbf{1d} & \textbf{2d} \\ 
+Joel & Coen \\ 
+Ethan & Coen   \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 6}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{ll}
+
+\textbf{1x} & \textbf{2x} \\ 
+Jason & Schwartzman \\ 
+Bill & Murray  \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 7}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{ll}
+
+\textbf{1d} & \textbf{2d} \\ 
+Mike & White \\ 
+Quentin & Tarantino  \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 8}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{llll}
+
+\textbf{1a} & \textbf{2a} & \textbf{1b} & \textbf{2b} \\ 
+Alec & Baldwin & Bill & Murray \\ 
+Alec & Baldwin & Edward & Saxon \\ 
+Alec & Baldwin & Frank & Pellegrino \\ 
+Bill & Murray & Alec & Baldwin \\ 
+Bill & Murray & Edward & Saxon \\ 
+Bill & Murray & Frank & Pellegrino \\ 
+Edward & Saxon & Alec & Baldwin \\ 
+Edward & Saxon & Bill & Murray \\ 
+Edward & Saxon & Frank & Pellegrino \\ 
+Frank & Pellegrino & Alec & Baldwin \\ 
+Frank & Pellegrino & Bill & Murray \\ 
+Frank & Pellegrino & Edward & Saxon \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 9}
+\label{}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{l}
+
+\textbf{f} \\ 
+Grindhouse \\ 
+Death Proof \\ 
+Sin City \\ 
+\end{tabular}
+\end{center}
+\caption{Resultado da Consulta 10}
+\label{}
+\end{table}
 
 %--------------------------------------------------------------------------------------------------
 \end{document}
